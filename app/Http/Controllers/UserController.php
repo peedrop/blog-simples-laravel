@@ -70,9 +70,9 @@ class UserController extends Controller
 
     public function profile(User $user)
     {
+        $this->authorize('update', $user);
         return view('admin.users.profile', compact('user'));
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -102,6 +102,7 @@ class UserController extends Controller
 
     public function updatePicture(UserProfileRequest $request, User $user)
     {
+        $this->authorize('update', $user);
         $data = $request->validated();
         $data = User::saveImg($data, 'profile_path', 'public/img/profile/', $user->profile_path);
 
@@ -111,6 +112,7 @@ class UserController extends Controller
 
     public function deletePicture(User $user)
     {
+        $this->authorize('update', $user);
         User::deleteImg($user->profile_path, 'public/img/profile/');
         $user->profile_path = "profile_default.png";
         $user->save();
