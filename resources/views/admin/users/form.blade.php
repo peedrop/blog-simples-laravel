@@ -1,6 +1,3 @@
-@push('name')
-
-@endpush
 <div class="row">
     <div class="form-group col-sm-6">
         <label for="name" class="required">Nome </label>

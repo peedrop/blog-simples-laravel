@@ -19,6 +19,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('', [PagesController::class, 'home'])->name('home');
 Route::get('/home', [PagesController::class, 'home'])->name('home');
+Route::get('/blog', [PagesController::class, 'blog'])->name('blog');
 
 Route::middleware(['auth', 'verified'])->group(function(){
     // Rotas logadas

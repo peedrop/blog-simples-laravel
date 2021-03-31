@@ -16,6 +16,10 @@ class PagesController extends Controller
     {
         return view('site.home');
     }
+    public function blog()
+    {
+        return view('site.blog');
+    }
     public function dashboard()
     {
         return view('admin.dashboard');

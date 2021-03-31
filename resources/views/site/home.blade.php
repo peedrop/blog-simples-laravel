@@ -1,7 +1,23 @@
 @extends('layouts.site')
 
-@section('title', 'Página Inicial')
+@section('title', 'Projeto de exemplo')
 
 @section('content')
-
+    <h4 class="text-center mt-4">Lista de funcionalidades:</h4>
+    <div class="row justify-content-center">
+        <ol>
+            <li>Laravel 8 e AdminLTE</li>
+            <li>Usuário</li>
+            <ol>
+                <li>Perfil</li>
+                <li>Nível de permissão</li>
+                <li>Esqueceu sua senha?</li>
+                <li>Confirmação de e-mail</li>
+            </ol>
+            <li>Blog</li>
+            <ol>
+                <li></li>
+            </ol>
+        </ol>
+    </div>
 @endsection
