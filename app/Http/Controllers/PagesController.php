@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryBlog;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -18,7 +19,8 @@ class PagesController extends Controller
     }
     public function blog()
     {
-        return view('site.blog');
+        $categories = CategoryBlog::all();
+        return view('site.blog', compact('categories'));
     }
     public function dashboard()
     {

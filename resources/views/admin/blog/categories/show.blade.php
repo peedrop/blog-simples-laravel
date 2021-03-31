@@ -2,13 +2,13 @@
 
 @section('content')
     @component('admin.components.show')
-        @slot('title', 'Detalhes do Usuário')
+        @slot('title', 'Detalhes da Categoria do Blog')
         @slot('content')
-            @include('admin.users.form')
+            @include('admin.blog.categories.form')
         @endslot
         @slot('back')
-            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary float-right ml-1"><i class="fas fa-pen"></i> Editar</a>
-            <a href="{{ route('users.index') }}" class="btn btn-dark float-right"><i class="fas fa-undo-alt"></i> Voltar</a>
+            <a href="{{ route('blog.categories.edit', $category->id) }}" class="btn btn-primary float-right ml-1"><i class="fas fa-pen"></i> Editar</a>
+            <a href="{{ route('blog.categories.index') }}" class="btn btn-dark float-right"><i class="fas fa-undo-alt"></i> Voltar</a>
         @endslot
     @endcomponent
 @endsection

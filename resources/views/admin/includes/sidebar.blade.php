@@ -36,25 +36,35 @@
                         <p>Home</p>
                     </a>
                 </li>
-            </ul>
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item has-treeview">
                     <a href="{{ route('dashboard') }}" class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-            </ul>
-            @can('is_admin', App\Models\User::class)
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                @can('is_admin', App\Models\User::class)
                     <li class="nav-item has-treeview">
                         <a href="{{ route('users.index') }}" class="nav-link {{ Route::is('users.index') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-user-cog"></i>
                             <p>Usuários</p>
                         </a>
                     </li>
-                </ul>
-            @endcan
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-blog"></i>
+                            <p> Blog <i class="right fas fa-angle-left"></i> </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item ml-4">
+                                <a href="{{ route('blog.categories.index') }}" class="nav-link {{ Route::is('blog.categories.index') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-list"></i>
+                                    <p>Categorias</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
+            </ul>
         </nav>
         <!-- Fim Sidebar Menu -->
 

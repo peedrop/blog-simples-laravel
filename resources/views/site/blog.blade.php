@@ -7,15 +7,15 @@
         <div class="col-sm-3">
             <h3 class="text-center">Categorias</h3>
             <ul class="list-group">
-                @for ($i = 0; $i<5; $i++)
+                @foreach ($categories as $category)
                     <a href="#">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Cras justo odio
-                            <span class="badge badge-dark badge-pill">{{rand(1,10)}}</span>
+                            {{$category->name}}
+                            <span class="badge badge-dark badge-pill">{{$category->getQntPost()}}</span>
                         </li>
                     </a>
-                @endfor
-              </ul>
+                @endforeach
+            </ul>
         </div>
         <div class="col-sm-9">
             <h3 class="text-center">Posts</h3>
