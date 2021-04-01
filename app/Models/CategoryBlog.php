@@ -13,7 +13,17 @@ class CategoryBlog extends Model
         'name',
     ];
 
-    public function getQntPost () {
-        return rand(3,11);
+    public function postsBlog() {
+        return $this->hasMany(PostBlog::class, 'category_id');
+    }
+
+    public function qntPostsBlog() {
+        return $this->postsBlog()->count();
+    }
+
+    public static function allOrderByQntPosts() {
+        return CategoryBlog::all()->sortByDesc(function ($category) {
+            return $category->qntPostsBlog();
+        });
     }
 }

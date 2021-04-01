@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryBlog;
+use App\Models\PostBlog;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -19,8 +20,9 @@ class PagesController extends Controller
     }
     public function blog()
     {
-        $categories = CategoryBlog::all();
-        return view('site.blog', compact('categories'));
+        $categories = CategoryBlog::allOrderByQntPosts()->chunk(3)[0];
+        $posts = PostBlog::all();
+        return view('site.blog', compact('categories', 'posts'));
     }
     public function dashboard()
     {

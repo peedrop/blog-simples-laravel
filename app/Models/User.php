@@ -64,6 +64,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+    public function postsBlog() {
+        return $this->hasMany(PostBlog::class);
+    }
+
     public static function saveImg($data, $name, $diretorio, $imgAntiga = '') {
         if(isset($data[$name]) && is_file($data[$name])){
             $imgName = $data[$name]->getClientOriginalName();

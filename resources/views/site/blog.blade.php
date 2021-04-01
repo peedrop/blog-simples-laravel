@@ -11,7 +11,7 @@
                     <a href="#">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             {{$category->name}}
-                            <span class="badge badge-dark badge-pill">{{$category->getQntPost()}}</span>
+                            <span class="badge badge-dark badge-pill">{{$category->qntPostsBlog()}}</span>
                         </li>
                     </a>
                 @endforeach
@@ -20,25 +20,25 @@
         <div class="col-sm-9">
             <h3 class="text-center">Posts</h3>
             <div class="row">
-                @for ($i = 0; $i<4; $i++)
-                    <div class="col-sm-6">
-                        <div class="card border-dark mb-3">
+                @foreach ($posts as $post)
+                    <div class="col-sm-6 mb-3">
+                        <div class="card border-dark h-100">
                             <img class="card-img-top" src="{{ asset('img/imgDefault.png') }}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title mb-2">Card title</h5>
-                                <h6 class="card-text text-muted">Card subtitle</h6>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="text-center">
-                                    <a href="#" class="btn btn-dark">Ver mais</a>
-                                </div>
+                            <div class="card-body pb-0">
+                                <h5 class="card-title mb-2">{{$post->title}}</h5>
+                                <h6 class="card-text text-muted">{{$post->subtitle}}</h6>
+                                <p class="card-text text-justify" title="{{$post->headline}}">{{ Str::limit($post->headline, 150, $end='...') }}</p>
                             </div>
-                            <div class="card-footer text-muted">
+                            <div class="text-center mb-2">
+                                <a href="#" class="btn btn-dark">Ver mais</a>
+                            </div>
+                            <div class="card-footer text-muted text-center">
                                 <img src="{{ asset('img/imgDefault.png') }}" width="15%" class="rounded-circle mr-2" alt="Foto Perfil">
-                                Postado por Laravel em {{date( 'd/m/Y' , strtotime(date("Y-m-d H:i:s")))}}
+                                {{$post->verifyEdit()}} por {{ collect(explode(' ', $post->user->name))->slice(0, 1)->implode(' ') }} em {{date( 'd/m/Y' , strtotime($post->updated_at))}}
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endforeach
             </div>
             <div class="row justify-content-center mt-4">
                 <nav aria-label="Page navigation example">
