@@ -64,6 +64,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+    public function nameSplit($parts) {
+        return collect(explode(' ', $this->name))->slice(0, $parts)->implode(' ');
+    }
+
     public function postsBlog() {
         return $this->hasMany(PostBlog::class);
     }

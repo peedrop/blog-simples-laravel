@@ -33,7 +33,7 @@ class PostBlogFactory extends Factory
             'title' => $faker->word,
             'subtitle' => $faker->word,
             'headline' => $faker->text(50),
-            'content' => $faker->text(500),
+            'contents' => $faker->text(500),
             'image_path' => "imgDefault.png",
             'category_id' => $categories_id[$key_category],
             'user_id' => $users_id[$key_user],

@@ -20,7 +20,7 @@ class CreatePostBlogsTable extends Migration
             $table->string('title');
             $table->string('subtitle');
             $table->text('headline');
-            $table->longtext('content');
+            $table->longtext('contents');
             $table->string('image_path');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

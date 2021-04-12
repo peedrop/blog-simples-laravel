@@ -17,7 +17,7 @@
                 </a>
             </div>
             <div class="info">
-                <a href="{{ route('users.profile', Auth::user()->id ) }}" class="d-block">{{ collect(explode(' ', Auth::user()->name))->slice(0, 2)->implode(' ') }}</a>
+                <a href="{{ route('users.profile', Auth::user()->id ) }}" class="d-block">{{ Auth::user()->nameSplit(2) }}</a>
             </div>
             <div class="info align-self-center">
                 <form id="logout-form" method="post" action="{{ route('logout') }}">
@@ -59,6 +59,12 @@
                                 <a href="{{ route('blog.categories.index') }}" class="nav-link {{ Route::is('blog.categories.index') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-list"></i>
                                     <p>Categorias</p>
+                                </a>
+                            </li>
+                            <li class="nav-item ml-4">
+                                <a href="{{ route('blog.posts.index') }}" class="nav-link {{ Route::is('blog.posts.index') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-sticky-note"></i>
+                                    <p>Posts</p>
                                 </a>
                             </li>
                         </ul>

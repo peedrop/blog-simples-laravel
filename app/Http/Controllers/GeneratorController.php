@@ -23,6 +23,7 @@ class GeneratorController extends Controller
         }
     }
 
+    //necessário refatorar
     public function verifyFiles($model) {
         $model = ucfirst(strtolower($model));
         $raiz = explode("app\Http\Controllers", __DIR__)[0];
@@ -42,6 +43,7 @@ class GeneratorController extends Controller
         dd($responseModel, $responseController, $responseRequest, $responsePolicy, $responseFactory, $responseSeeder, $responseMigration);
     }
 
+    //necessário refatorar
     public function deleteFiles($model) {
         $model = ucfirst(strtolower($model));
         $raiz = explode("app\Http\Controllers", __DIR__)[0];
@@ -61,7 +63,12 @@ class GeneratorController extends Controller
         dd($responseModel, $responseController, $responseRequest, $responsePolicy, $responseFactory, $responseSeeder, $responseMigration);
     }
 
+    //necessário refatorar
     public function alterBodyFiles($model) {
-        dd("stop");
+        $model = ucfirst(strtolower($model));
+        $raiz = explode("app\Http\Controllers", __DIR__)[0];
+        $diretorio = str_replace('archive', $model.'Controller', $raiz.'app\Http\Controllers\archive.php');
+        $arquivo = file($diretorio);
+        dd($arquivo);
     }
 }

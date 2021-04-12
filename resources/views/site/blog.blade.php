@@ -34,7 +34,7 @@
                             </div>
                             <div class="card-footer text-muted text-center">
                                 <img src="{{ asset('img/imgDefault.png') }}" width="15%" class="rounded-circle mr-2" alt="Foto Perfil">
-                                {{$post->verifyEdit()}} por {{ collect(explode(' ', $post->user->name))->slice(0, 1)->implode(' ') }} em {{date( 'd/m/Y' , strtotime($post->updated_at))}}
+                                {{$post->verifyEdit()}} por {{ $post->user->nameSplit(1) }} em {{ date('d/m/Y', strtotime($post->updated_at)) }}
                             </div>
                         </div>
                     </div>

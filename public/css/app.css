@@ -4732,6 +4732,10 @@ input[type=button].btn-block {
   content: "Browse";
 }
 
+.custom-file-input:lang(pt-br) ~ .custom-file-label::after {
+  content: "Escolher";
+}
+
 .custom-file-input ~ .custom-file-label[data-browse]::after {
   content: attr(data-browse);
 }
@@ -21795,6 +21799,10 @@ input[type=button].btn-block {
 
 .custom-file-input:lang(en) ~ .custom-file-label::after {
   content: "Browse";
+}
+
+.custom-file-input:lang(pt-br) ~ .custom-file-label::after {
+  content: "Escolher";
 }
 
 .custom-file-input ~ .custom-file-label[data-browse]::after {
@@ -51984,4 +51992,8 @@ body {
 }
 
 /* Fim Css Overlay Profile Image */
+
+.resizeNone {
+  resize: none;
+}
 

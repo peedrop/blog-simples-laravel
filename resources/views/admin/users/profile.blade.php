@@ -30,7 +30,7 @@
                         </div>
                     </form>
                 </div>
-                <h3 class="profile-username text-center">{{ collect(explode(' ', Auth::user()->name))->slice(0, 2)->implode(' ') }}</h3>
+                <h3 class="profile-username text-center">{{ $user->nameSplit(2) }}</h3>
 
                 <p class="text-muted text-center">{{ $user->email }}</p>
 
