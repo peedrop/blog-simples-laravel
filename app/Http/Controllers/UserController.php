@@ -105,7 +105,6 @@ class UserController extends Controller
         $this->authorize('update', $user);
         $data = $request->validated();
         $data = User::saveImg($data, 'profile_path', 'public/img/profile/', $user->profile_path);
-
         $user->update($data);
         return redirect()->back()->with('success',true);
     }

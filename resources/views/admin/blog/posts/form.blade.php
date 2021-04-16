@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="form-group col-sm-7">
+    <div class="form-group col-sm-8">
         <label for="title" class="required">Título </label>
         <input type="text" name="title" id="title" class="form-control" required autofocus value="{{ old('title',$post->title) }}">
 
@@ -13,16 +13,18 @@
                 <option value="{{$category->id}}">{{$category->name}}</option>
             @endforeach
         </select>
-
-        <label for="image_path" class="required mt-3">Imagem </label>
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" id="profile" name="image_path" accept="image/*" lang="pt-br">
-            <label class="custom-file-label">Selecione uma imagem</label>
-        </div>
+        @if (!Route::is('blog.posts.show'))
+            <label for="image_path" class="required mt-3">Imagem </label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="profile" name="image_path" accept="image/*" lang="pt-br">
+                <label class="custom-file-label">Selecione uma imagem</label>
+            </div>
+        @endif
     </div>
-    <div class="form-group col-sm-5">
+    <div class="form-group col-sm-4">
         <h5 class="text-center"><b>Imagem</b></h5>
-        <img class="card-img-top img-fluid shadow border" id="previewProfile" src="{{ asset('img/imgDefault.png') }}" alt="Card image cap">
+        <img class="card-img-top img-fluid shadow border" id="previewProfile" src="{{ asset('storage/img/posts/' . $post->image_path) }}" alt="Card image cap">
+        <small class="float-right"><i>*preview</i></small>
     </div>
     <div class="form-group col-sm-12">
         <label for="headline" class="required">Resumo </label>

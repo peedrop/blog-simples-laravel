@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostBlogCreateRequest;
 use App\Models\CategoryBlog;
 use App\Models\PostBlog;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class PostBlogController extends Controller
     {
         $post = new PostBlog();
         $categories = CategoryBlog::all();
+        $post->image_path = "post_default.png";
         return view('admin.blog.posts.create',compact('post', 'categories'));
     }
 
@@ -37,11 +39,11 @@ class PostBlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostBlogCreateRequest $request)
     {
-        $data = $request->all();
-        dd($data);
-        // $data = $request->validated();
+        $data = $request->validated();
+        $data = PostBlog::insertUser($data);
+        $data = PostBlog::saveImg($data, 'image_path', 'public/img/posts/', $data['image_path']);
         PostBlog::create($data);
         return redirect()->route('blog.posts.index')->with('success',true);
     }
@@ -54,7 +56,8 @@ class PostBlogController extends Controller
      */
     public function show(PostBlog $post)
     {
-        return view('admin.blog.posts.show', compact('post'));
+        $categories = CategoryBlog::all();
+        return view('admin.blog.posts.show', compact('post', 'categories'));
     }
 
     /**
@@ -76,10 +79,10 @@ class PostBlogController extends Controller
      * @param  \App\Models\PostBlog  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PostBlog $post)
+    public function update(PostBlogCreateRequest $request, PostBlog $post)
     {
-        $data = $request->all();
-        // $data = $request->validated();
+        $data = $request->validated();
+        $data = PostBlog::saveImg($data, 'image_path', 'public/img/posts/', $post->image_path);
         $post->update($data);
         return redirect()->route('blog.posts.index')->with('success',true);
     }

@@ -21,7 +21,7 @@ class CreatePostBlogsTable extends Migration
             $table->string('subtitle');
             $table->text('headline');
             $table->longtext('contents');
-            $table->string('image_path');
+            $table->string('image_path')->default("post_default.png");
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('category_blogs')->onDelete('cascade');

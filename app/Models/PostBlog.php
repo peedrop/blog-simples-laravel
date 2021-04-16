@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PostBlog extends Model
@@ -33,6 +35,22 @@ class PostBlog extends Model
             return "Postado";
         else
             return "Editado";
+    }
+
+    public static function getLastMonths() {
+        $today = Carbon::today();
+        $ago = Carbon::today()->modify("-11 month");
+        $months = [];
+        while($ago->timestamp <= $today->timestamp){
+            array_unshift($months, ucfirst($ago->monthName));
+            $ago->modify("+1 month");
+        }
+        return $months;
+    }
+
+    public static function insertUser($data) {
+        $data['user_id'] = Auth::user()->id;
+        return $data;
     }
 
     public static function saveImg($data, $name, $diretorio, $imgAntiga = '') {

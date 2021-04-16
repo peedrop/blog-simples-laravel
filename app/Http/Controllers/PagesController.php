@@ -21,8 +21,10 @@ class PagesController extends Controller
     public function blog()
     {
         $categories = CategoryBlog::allOrderByQntPosts()->chunk(3)[0];
-        $posts = PostBlog::all();
-        return view('site.blog', compact('categories', 'posts'));
+        $categories_all = CategoryBlog::all();
+        $posts = PostBlog::paginate(4);
+        $months = PostBlog::getLastMonths();
+        return view('site.blog', compact('categories', 'categories_all', 'posts', 'months'));
     }
     public function dashboard()
     {

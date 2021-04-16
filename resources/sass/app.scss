@@ -145,3 +145,7 @@ body {
 .resizeNone{
     resize: none;
 }
+
+.timeline::before {
+    left: 48% !important;
+}

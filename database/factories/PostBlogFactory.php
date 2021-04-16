@@ -34,7 +34,7 @@ class PostBlogFactory extends Factory
             'subtitle' => $faker->word,
             'headline' => $faker->text(50),
             'contents' => $faker->text(500),
-            'image_path' => "imgDefault.png",
+            'image_path' => "post_default.png",
             'category_id' => $categories_id[$key_category],
             'user_id' => $users_id[$key_user],
         ];

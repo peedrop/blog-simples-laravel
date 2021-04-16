@@ -16,6 +16,7 @@
 @push('scripts')
     <script>
         $(".form-control").attr("disabled", true);
+        $('.summernote').summernote('disable');
     </script>
     <script src="{{ asset('js/components/dataTable.js') }}"></script>
     <script src="{{ asset('js/components/sweetAlert.js') }}"></script>
