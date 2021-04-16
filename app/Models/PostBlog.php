@@ -71,4 +71,12 @@ class PostBlog extends Model
             Storage::delete($diretorio . $imgName);
         }
     }
+
+    public static function search($search) {
+        return PostBlog::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('subtitle', 'LIKE', "%{$search}%")
+            ->orWhere('headline', 'LIKE', "%{$search}%")
+            ->orWhere('contents', 'LIKE', "%{$search}%");
+    }
 }

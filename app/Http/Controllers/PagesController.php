@@ -26,6 +26,20 @@ class PagesController extends Controller
         $months = PostBlog::getLastMonths();
         return view('site.blog', compact('categories', 'categories_all', 'posts', 'months'));
     }
+
+    public function search(Request $request){
+        $search = $request->input('search');
+        $posts = PostBlog::search($search)->paginate(4);
+        $categories = CategoryBlog::allOrderByQntPosts()->chunk(3)[0];
+        $categories_all = CategoryBlog::all();
+        $months = PostBlog::getLastMonths();
+        return view('site.blog', compact('categories', 'categories_all', 'posts', 'months'));
+    }
+
+    public function post(PostBlog $post)
+    {
+        return view('site.post', compact('post'));
+    }
     public function dashboard()
     {
         return view('admin.dashboard');
