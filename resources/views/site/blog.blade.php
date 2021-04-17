@@ -6,9 +6,9 @@
     <div class="row mt-4">
         <div class="col-sm-3">
             <h3 class="text-center">Pesquisar</h3>
-            <form action="{{ route('blog.search') }}" method="GET">
+            <form action="{{ route('blog.search', request()->category->id ?? '') }}" method="GET">
                 <div class="input-group mb-3">
-                    <input type="text" name="search" class="form-control" required>
+                    <input type="text" name="search" class="form-control" value="{{request()->search}}" required>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
                     </div>
@@ -17,7 +17,7 @@
             <h3 class="text-center">Categorias</h3>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <select name="category_id" class="form-control select2" id="category_id" value="{{ old('category_id') }}" required>
+                    <select name="category_id" class="form-control select2" id="category_id" value="{{ request()->category->id ?? '' }}" required>
                         <option></option>
                         @foreach ($categories_all as $category)
                             <option value="{{$category->id}}">{{$category->name}}</option>
@@ -25,7 +25,7 @@
                     </select>
                 </li>
                 @foreach ($categories as $category)
-                    <a href="#">
+                    <a href="{{ route('blog.search', $category->id) }}">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             {{$category->name}}
                             <span class="badge badge-dark badge-pill">{{$category->qntPostsBlog()}}</span>
@@ -54,7 +54,7 @@
                             <img class="card-img-top" src="{{ asset('storage/img/posts/' . $post->image_path) }}" alt="Imagem capa do blog">
                             <div class="card-body pb-0">
                                 <h5 class="card-title mb-2">{{$post->title}}</h5>
-                                <h6 class="card-text text-muted">{{$post->subtitle}}</h6>
+                                <h6 class="card-text text-muted">{{$post->subtitle}} <span class="badge badge-secondary">{{$post->category->name}}</span></h6>
                                 <p class="card-text text-justify" title="{{$post->headline}}">{{ Str::limit($post->headline, 150, $end='...') }}</p>
                             </div>
                             <div class="text-center mb-2">

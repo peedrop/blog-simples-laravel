@@ -25,7 +25,7 @@ Auth::routes(['verify' => true]);
 Route::get('', [PagesController::class, 'home'])->name('home');
 Route::get('/home', [PagesController::class, 'home'])->name('home');
 Route::get('/blog', [PagesController::class, 'blog'])->name('blog');
-Route::get('/blog/search/', [PagesController::class, 'search'])->name('blog.search');
+Route::get('/blog/search/{category?}', [PagesController::class, 'search'])->name('blog.search');
 Route::get('/post/{post}', [PagesController::class, 'post'])->name('post');
 // Fim Rotas não logados
 

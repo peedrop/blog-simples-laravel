@@ -27,9 +27,13 @@ class PagesController extends Controller
         return view('site.blog', compact('categories', 'categories_all', 'posts', 'months'));
     }
 
-    public function search(Request $request){
+    public function search(Request $request, CategoryBlog $category)
+    {
         $search = $request->input('search');
-        $posts = PostBlog::search($search)->paginate(4);
+        if($category->id)
+            $posts = $category->postsBlog()->paginate(4);
+        else
+            $posts = PostBlog::search($search)->paginate(4);
         $categories = CategoryBlog::allOrderByQntPosts()->chunk(3)[0];
         $categories_all = CategoryBlog::all();
         $months = PostBlog::getLastMonths();
