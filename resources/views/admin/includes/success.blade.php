@@ -15,7 +15,7 @@
 <!-- Fim Success -->
 
 <!-- Success Top Right -->
-{{-- @if(session('success'))
+@if(session('successTop'))
     @push('scripts')
         <script>
             const Toast = Swal.mixin({
@@ -35,6 +35,6 @@
             })
         </script>
     @endpush
-@endif --}}
+@endif
 <!-- Fim Success -->
 

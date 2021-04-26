@@ -24,8 +24,12 @@ Auth::routes(['verify' => true]);
 // Rotas não logados
 Route::get('', [PagesController::class, 'home'])->name('home');
 Route::get('/home', [PagesController::class, 'home'])->name('home');
+Route::get('/contato', [PagesController::class, 'contato'])->name('contato');
+Route::post('/contato/enviar', [PagesController::class, 'sendMail'])->name('sendMail');
 Route::get('/blog', [PagesController::class, 'blog'])->name('blog');
-Route::get('/blog/search/{category?}', [PagesController::class, 'search'])->name('blog.search');
+Route::get('/blog/search', [PagesController::class, 'searchBlog'])->name('blog.search');
+Route::get('/blog/category/{category}', [PagesController::class, 'searchCategoryBlog'])->name('blog.search.category');
+Route::get('/blog/month/{month}', [PagesController::class, 'searchMonthBlog'])->name('blog.search.month');
 Route::get('/post/{post}', [PagesController::class, 'post'])->name('post');
 // Fim Rotas não logados
 

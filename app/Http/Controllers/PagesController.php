@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Contact;
 use App\Models\CategoryBlog;
 use App\Models\PostBlog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PagesController extends Controller
 {
@@ -18,26 +20,56 @@ class PagesController extends Controller
     {
         return view('site.home');
     }
+
+    public function contato()
+    {
+        return view('site.contato');
+    }
+
+    public function sendMail(Request $request) {
+        Mail::send(new Contact($request->all()));
+        return redirect()->back()->with('success',true);
+    }
+
     public function blog()
     {
         $categories = CategoryBlog::allOrderByQntPosts()->chunk(3)[0];
         $categories_all = CategoryBlog::all();
-        $posts = PostBlog::paginate(4);
         $months = PostBlog::getLastMonths();
-        return view('site.blog', compact('categories', 'categories_all', 'posts', 'months'));
+        $posts = PostBlog::paginate(4);
+        $postsRecent = PostBlog::orderBy('id','desc')->take(3)->get();
+        return view('site.blog', compact('categories', 'categories_all', 'months', 'postsRecent', 'posts'));
     }
 
-    public function search(Request $request, CategoryBlog $category)
+    public function searchBlog(Request $request)
     {
         $search = $request->input('search');
-        if($category->id)
-            $posts = $category->postsBlog()->paginate(4);
-        else
-            $posts = PostBlog::search($search)->paginate(4);
+        $posts = PostBlog::search($search)->paginate(4);
         $categories = CategoryBlog::allOrderByQntPosts()->chunk(3)[0];
         $categories_all = CategoryBlog::all();
         $months = PostBlog::getLastMonths();
-        return view('site.blog', compact('categories', 'categories_all', 'posts', 'months'));
+        $postsRecent = PostBlog::orderBy('id','desc')->take(3)->get();
+        return view('site.blog', compact('categories', 'categories_all', 'months', 'postsRecent', 'posts'));
+    }
+
+    public function searchCategoryBlog(CategoryBlog $category)
+    {
+        $posts = $category->postsBlog()->paginate(4);
+        $categories = CategoryBlog::allOrderByQntPosts()->chunk(3)[0];
+        $categories_all = CategoryBlog::all();
+        $months = PostBlog::getLastMonths();
+        $postsRecent = PostBlog::orderBy('id','desc')->take(3)->get();
+        return view('site.blog', compact('categories', 'categories_all', 'months', 'postsRecent', 'posts'));
+    }
+
+    public function searchMonthBlog($month)
+    {
+        $posts = PostBlog::whereMonth('updated_at', '=', $month)->paginate(4);
+        $categories = CategoryBlog::allOrderByQntPosts()->chunk(3)[0];
+        $categories_all = CategoryBlog::all();
+        $months = PostBlog::getLastMonths();
+        $postsRecent = PostBlog::orderBy('id','desc')->take(3)->get();
+        return view('site.blog', compact('categories', 'categories_all', 'months', 'postsRecent', 'posts'));
     }
 
     public function post(PostBlog $post)

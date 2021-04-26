@@ -42,7 +42,9 @@ class PostBlog extends Model
         $ago = Carbon::today()->modify("-11 month");
         $months = [];
         while($ago->timestamp <= $today->timestamp){
-            array_unshift($months, ucfirst($ago->monthName));
+            $month['name'] = ucfirst($ago->monthName);
+            $month['id'] = ucfirst($ago->month);
+            array_unshift($months, $month);
             $ago->modify("+1 month");
         }
         return $months;

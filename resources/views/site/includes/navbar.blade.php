@@ -17,6 +17,9 @@
                 <li class="nav-item {{ Route::is('blog') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('blog') }}">Blog</a>
                 </li>
+                <li class="nav-item {{ Route::is('contato') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('contato') }}">Contato</a>
+                </li>
                 @auth
                     <li class="nav-item {{ Route::is('dashboard') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('dashboard') }}">Sistema</a>

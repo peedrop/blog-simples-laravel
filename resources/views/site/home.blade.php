@@ -7,8 +7,12 @@
     <div class="row justify-content-center">
         <ol>
             <li>Laravel 8 e AdminLTE</li>
+            <li>Contato</li>
             <li>Usuário</li>
             <ol>
+                <li>Login</li>
+                <li>Registrar</li>
+                <li>Permissão admin para escritor</li>
                 <li>Perfil</li>
                 <li>Nível de permissão</li>
                 <li>Esqueceu sua senha?</li>
@@ -16,7 +20,9 @@
             </ol>
             <li>Blog</li>
             <ol>
-                <li></li>
+                <li>Gerenciamento Categoria</li>
+                <li>Gerenciamento Posts</li>
+                <li>Filtros: pesquisa, categoria, meses</li>
             </ol>
         </ol>
     </div>

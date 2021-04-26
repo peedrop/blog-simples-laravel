@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel8 + AdminLTE'),
+    'name' => env('APP_NAME', 'AdminLTE'),
 
     /*
     |--------------------------------------------------------------------------
