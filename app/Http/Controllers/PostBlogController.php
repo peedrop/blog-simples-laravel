@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostBlogCreateRequest;
+use App\Http\Requests\PostBlogUpdateRequest;
 use App\Models\CategoryBlog;
 use App\Models\PostBlog;
 use Illuminate\Http\Request;
@@ -79,7 +80,7 @@ class PostBlogController extends Controller
      * @param  \App\Models\PostBlog  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(PostBlogCreateRequest $request, PostBlog $post)
+    public function update(PostBlogUpdateRequest $request, PostBlog $post)
     {
         $data = $request->validated();
         $data = PostBlog::saveImg($data, 'image_path', 'public/img/posts/', $post->image_path);

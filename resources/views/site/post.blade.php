@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-sm-12 text-justify px-5 pb-5 pt-2">
                 <img class="ml-4 w-50" align="right" src="{{ asset('storage/img/posts/' . $post->image_path) }}" alt="Imagem capa do blog">
-                <p>{{$post->contents}}</p>
+                <p>{!! $post->contents !!}</p>
             </div>
         </div>
         @include('layouts.comments')
